@@ -21,7 +21,10 @@ class InstallData implements InstallDataInterface
      */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
+
         $installer = $setup;
+
+        $installer->startSetup();
 
         $installer->getConnection()->insert(
             $installer->getTable('mastering_sample_item'),
@@ -36,8 +39,6 @@ class InstallData implements InstallDataInterface
                 'name' => 'Item 2'
             ]
         );
-
-        $installer->startSetup();
 
         $installer->endSetup();
     }
