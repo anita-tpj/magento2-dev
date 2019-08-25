@@ -1,0 +1,14 @@
+<?php
+/**
+ * Author: Mage eComm
+ * Copyright © Mage eComm. All rights reserved.
+ */
+
+/**  @var \Mastering\SampleModule\Block\Hello $block */
+?>
+
+<?php foreach($block->getItems() as $item): ?>
+<p>
+    <?php echo $item->getName();?>: <?php echo $item->getDescription(); ?>
+</p>
+<?php endforeach; ?>
