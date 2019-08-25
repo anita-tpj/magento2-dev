@@ -2,7 +2,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
         <job name="masteringAddItem" instance="Mastering\SampleModule\Cron\AddItem" method="execute">
-            <config_path>mastering/general/cron_expression</config_path>
             <schedule>* * * * *</schedule>
         </job>
     </group>
