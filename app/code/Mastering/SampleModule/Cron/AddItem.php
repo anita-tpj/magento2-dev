@@ -9,16 +9,21 @@ class AddItem
 {
     private $itemFactory;
 
-    public function __construct(ItemFactory $itemFactory)
+    private $config;
+
+    public function __construct(ItemFactory $itemFactory, Config $config)
     {
         $this->itemFactory = $itemFactory;
+        $this->Config = $config;
     }
 
     public function execute()
     {
-        $this->itemFactory->create()
-            ->setName('Scheduled item')
-            ->setDescription('Created at ' . time())
-            ->save();
+        if($this->Config->isEnabled()) {
+            $this->itemFactory->create()
+                ->setName('Scheduled item')
+                ->setDescription('Created at ' . time())
+                ->save();
+        }
     }
 }
