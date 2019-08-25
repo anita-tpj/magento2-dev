@@ -13,4 +13,6 @@
             </argument>
         </arguments>
     </type>
+    <preference type="Mastering\SampleModule\Model\Item" for="Mastering\SampleModule\Api\Data\ItemInterface"/>
+    <preference type="Mastering\SampleModule\Model\ItemRepository" for="Mastering\SampleModule\Api\ItemRepositoryInterface"/>
 </config>
