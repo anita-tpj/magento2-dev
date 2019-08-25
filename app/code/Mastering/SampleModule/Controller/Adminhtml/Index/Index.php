@@ -10,7 +10,7 @@ class Index extends \Magento\Backend\App\Action
     {
         /** @var \Magento\Framework\Controller\Result\Raw $result */
         $result = $this->resultFactory->create(ResultFactory::TYPE_RAW);
-        $result->setContent('Hello World');
+        $result->setContents('Hello Admins!');
         return $result;
     }
 }
