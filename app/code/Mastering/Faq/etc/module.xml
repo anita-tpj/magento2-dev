@@ -1,4 +1,11 @@
 <?xml version="1.0"?>
+<!--
+* Created by PhpStorm.
+* User: Anita
+* Date: 15.9.2019.
+* Time: 00:18
+*/
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Mastering_Faq" setup_version="0.1.0">

@@ -17,10 +17,11 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 class Collection extends AbstractCollection
 {
 
-    /** @var string*/
+    /***
+     * @var string
+     */
     protected $_idFieldName = 'faq_id';
-
-
+    
     protected function _construct()
     {
         $this->_init('Mastering\Faq\Model\Items', 'Mastering\Faq\Model\ResourceModel\Items');
