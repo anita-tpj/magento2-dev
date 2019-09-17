@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+* Created by PhpStorm.
+* User: Anita
+* Date: 15.9.2019.
+* Time: 00:18
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="content">
+            <block name="mastering_faq_page" class="Mastering\Faq\Block\Frontend\Itemlist" template="itemlist.phtml">
+                <arguments>
+                    <argument name="label" xsi:type="string">FAQs</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

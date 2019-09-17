@@ -1,0 +1,16 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Anita
+ * Date: 16.9.2019.
+ * Time: 14:06
+ */
+
+/**  @var \Mastering\Faq\Block\Adminhtml\Itemlist $block */
+?>
+<?php echo $block->getLabel(); ?>
+<?php foreach($block->getItems() as $item): ?>
+    <p>
+        <?php echo $item['question'];?>: <?php echo $item->getAnswer(); ?>
+    </p>
+<?php endforeach; ?>
