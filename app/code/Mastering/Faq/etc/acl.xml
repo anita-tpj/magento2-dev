@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+* Created by PhpStorm.
+* User: Anita
+* Date: 15.9.2019.
+* Time: 00:18
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Mastering_Faq::faq" title="FAQs" sortOrder="60">
+                    <resource id="Mastering_Faq::faq_items" title="Manage Faq Items" sortOrder="10"/>
+                    <resource id="Mastering_Faq::faq_categories" title="Manage Faq Categories" sortOrder="20"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

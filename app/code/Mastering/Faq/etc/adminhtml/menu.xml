@@ -15,5 +15,19 @@
              action="faq/index/index"
              sortOrder="60"
              parent="Magento_Backend::content" />
+        <add id="Mastering_Faq::faq_items"
+             title="Manage FAQ Items"
+             module="Mastering_Faq"
+             resource="Mastering_Faq::faq_items"
+             action="faq/items/index"
+             sortOrder="60"
+             parent="Mastering_Faq::faq" />
+        <add id="Mastering_Faq::faq_categories"
+             title="Manage FAQ categories"
+             module="Mastering_Faq"
+             resource="Mastering_Faq::faq_categories"
+             action="faq/categories/index"
+             sortOrder="60"
+             parent="Mastering_Faq::faq" />
     </menu>
 </config>
