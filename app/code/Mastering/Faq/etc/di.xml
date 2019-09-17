@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="ItemsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Mastering\Faq\Model\ResourceModel\Items\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ItemsGridDataProviderFilterPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="ItemsGridDataProviderFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+    <arguments>
+        <argument name="appliers" xsi:type="array">
+            <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+            <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+        </argument>
+    </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+    <arguments>
+        <argument name="collections" xsi:type="array">
+            <item name="items_listing_data_source" xsi:type="string">Mastering\Faq\Model\ResourceModel\Grid\Items\Collection</item>
+        </argument>
+    </arguments>
+    </type>
+
+    <virtualType name="Mastering\Faq\Model\ResourceModel\Grid\Items\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+    <arguments>
+        <argument name="mainTable" xsi:type="string">mastering_faq</argument>
+        <argument name="resourceModel" xsi:type="string">Mastering\Faq\Model\ResourceModel\Items</argument>
+    </arguments>
+    </virtualType>
+
+
+</config>

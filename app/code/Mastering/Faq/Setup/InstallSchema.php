@@ -84,7 +84,7 @@ class InstallSchema implements InstallSchemaInterface
                     'FAQs category'
                 )
                 ->addColumn(
-                    'stores',
+                    'store_ids',
                     Table::TYPE_TEXT,
                     10,
                     [
