@@ -116,7 +116,7 @@ class Form extends Generic
         $fieldset->addField(
             'status',
             'select',
-            [   'name' => 'text',
+            [   'name' => 'status',
                 'label' => __('Status'),
                 'title' => __('Status'),
                 'values' => array_merge(['' => ''], $this->statusOption->toOptionArray())
