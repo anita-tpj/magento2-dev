@@ -236,33 +236,21 @@
             </argument>
         </column>
 
-        <column name="category_ids">
+        <column name="category_ids" class="Mastering\Faq\Ui\Component\Listing\Column\ItemsCategories">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="sorting" xsi:type="string">asc</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="label" xsi:type="string" translate="true">Categories</item>
-                </item>
+                <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                <item name="sortable" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Categories</item>
+            </item>
             </argument>
         </column>
 
-        <column name="store_ids">
+        <column name="store_ids" class="Mastering\Faq\Ui\Component\Listing\Column\Store">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="sorting" xsi:type="string">asc</item>
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
                     <item name="label" xsi:type="string" translate="true">Store View</item>
                 </item>
             </argument>
