@@ -9,6 +9,7 @@ namespace Mastering\Faq\Controller\Adminhtml\Items;
 
 use Magento\Backend\App\Action;
 use Mastering\Faq\Model\Items;
+use Magento\Store\Model\StoreRepository;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\Exception\LocalizedException;
 
@@ -20,16 +21,24 @@ class Save extends Action
     protected $_model;
 
     /**
+     * @var StoreRepository
+     */
+    protected $_storeManager;
+
+    /**
      * Save constructor.
      * @param Action\Context $context
      * @param Items $model
+     * @param StoreRepository $storeManager
      */
     public function __construct(
         Action\Context $context,
-        Items $model
+        Items $model,
+        StoreRepository $storeManager
     ) {
         parent::__construct($context);
         $this->_model = $model;
+        $this->_storeManager = $storeManager;
     }
 
     /**
@@ -55,6 +64,23 @@ class Save extends Action
             $id = $this->getRequest()->getParam('id');
             if ($id) {
                 $model->load($id);
+            }
+
+            if (isset($data['category_ids']) && $data['category_ids'] != '') {
+                $data['category_ids'] = implode(',', $data['category_ids']);
+            }
+
+            if (isset($data['store_ids']) && $data['store_ids'] != '') {
+                $stores = [];
+                if ($data['store_ids'] == 0) {
+                    foreach ($this->_storeManager->getList() as $store) {
+                        if ($store->getId() == 0) {
+                            continue;
+                        }
+                        $stores[] = $store->getId();
+                    }
+                    $data['store_ids'] = implode(',', $stores);
+                }
             }
 
             $model->setData($data);

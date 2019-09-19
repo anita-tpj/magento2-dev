@@ -29,4 +29,22 @@ class Collection extends AbstractCollection
         $this->_init('Mastering\Faq\Model\Categories', 'Mastering\Faq\Model\ResourceModel\Categories');
     }
 
+    /**
+     * @return array
+     */
+
+    public function getCategoriesForSelect(): array
+    {
+        $result = [];
+        $categories = $this->getData();
+        $i = 0;
+
+        foreach ($categories as $category) {
+            $result[$i]['value'] = $category['category_id'];
+            $result[$i]['label'] = $category['name'];
+            $i++;
+        }
+
+        return $result;
+    }
 }

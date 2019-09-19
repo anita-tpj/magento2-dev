@@ -14,6 +14,7 @@ use Magento\Framework\Data\FormFactory;
 use Magento\Store\Model\System\Store;
 use Magento\Config\Model\Config\Source\Enabledisable;
 use Mastering\Faq\Model\Items;
+use Mastering\Faq\Model\ResourceModel\Categories\Collection as Categories;
 
 /**
  * Class Form
@@ -33,12 +34,18 @@ class Form extends Generic
     protected $statusOption;
 
     /**
+     * @var Categories
+     */
+    protected $categories;
+
+    /**
      * Form constructor.
      * @param Context $context
      * @param Registry $registry
      * @param FormFactory $formFactory
      * @param Store $systemStore
      * @param Enabledisable $statusOption
+     * @param Categories $categories
      * @param array $data
      */
     public function __construct(
@@ -47,10 +54,12 @@ class Form extends Generic
         FormFactory $formFactory,
         Store $systemStore,
         Enabledisable  $statusOption,
+        Categories $categories,
         array $data = []
     ) {
         $this->_systemStore = $systemStore;
-        $this-> statusOption = $statusOption;
+        $this->statusOption = $statusOption;
+        $this->categories = $categories;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -130,7 +139,7 @@ class Form extends Generic
                 'label' => __('Category'),
                 'title' => __('Category'),
                 'required' => true,
-                /*'values'   => $this->categories->getCategoriesForSelect()*/
+                'values'   => $this->categories->getCategoriesForSelect()
             ]
         );
 

@@ -8,8 +8,6 @@
 
 namespace Mastering\Faq\Setup;
 
-namespace Mastering\Faq\Setup;
-
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\SchemaSetupInterface;
