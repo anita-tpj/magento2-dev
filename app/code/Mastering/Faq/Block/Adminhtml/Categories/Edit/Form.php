@@ -2,26 +2,22 @@
 /**
  * Created by PhpStorm.
  * User: Anita
- * Date: 17.9.2019.
- * Time: 18:57
+ * Date: 19.9.2019.
+ * Time: 13:18
  */
-namespace Mastering\Faq\Block\Adminhtml\Items\Edit;
+namespace Mastering\Faq\Block\Adminhtml\Categories\Edit;
 
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\Data\FormFactory;
 use Magento\Store\Model\System\Store;
+use Mastering\Faq\Model\Categories;
 use Magento\Config\Model\Config\Source\Enabledisable;
-use Mastering\Faq\Model\Items;
 
-/**
- * Class Form
- * @package Mastering\Faq\Block\Adminhtml\Items\Edit
- */
+
 class Form extends Generic
 {
-
     /**
      * @var Store
      */
@@ -38,7 +34,7 @@ class Form extends Generic
      * @param Registry $registry
      * @param FormFactory $formFactory
      * @param Store $systemStore
-     * @param Enabledisable $statusOption
+     * @param Enabledisable $statusoption
      * @param array $data
      */
     public function __construct(
@@ -46,23 +42,24 @@ class Form extends Generic
         Registry $registry,
         FormFactory $formFactory,
         Store $systemStore,
-        Enabledisable  $statusOption,
+        Enabledisable $statusOption,
         array $data = []
     ) {
         $this->_systemStore = $systemStore;
-        $this-> statusOption = $statusOption;
+        $this->statusOption = $statusOption;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
     /**
      * Init form
+     *
      * @return void
      */
     protected function _construct()
     {
         parent::_construct();
-        $this->setId('items_form');
-        $this->setTitle(__('Faq Information'));
+        $this->setId('categories_form');
+        $this->setTitle(__(' Information'));
     }
 
     /**
@@ -71,7 +68,7 @@ class Form extends Generic
      */
     protected function _prepareForm()
     {
-        /** @var Items $model */
+        /** @var Categories $model */
         $model = $this->_coreRegistry->registry('current_model');
 
         /** @var \Magento\Framework\Data\Form $form */
@@ -79,7 +76,7 @@ class Form extends Generic
             ['data' => ['id' => 'edit_form', 'action' => $this->getData('action'), 'method' => 'post']]
         );
 
-        $form->setHtmlIdPrefix('items_');
+        $form->setHtmlIdPrefix('categories_');
 
         $fieldset = $form->addFieldset(
             'base_fieldset',
@@ -87,28 +84,15 @@ class Form extends Generic
         );
 
         if ($model->getId()) {
-            $fieldset->addField(
-                'faq_id',
-                'hidden',
-                ['name' => 'faq_id']);
+            $fieldset->addField('category_id', 'hidden', ['name' => 'category_id']);
         }
 
         $fieldset->addField(
-            'question',
+            'name',
             'text',
-            [   'name' => 'question',
-                'label' => __('Question'),
-                'title' => __('Question'),
-                'required' => true
-            ]
-        );
-
-        $fieldset->addField(
-            'answer',
-            'text',
-            [   'name' => 'answer',
-                'label' => __('Answer'),
-                'title' => __('Answer'),
+            [   'name' => 'name',
+                'label' => __('Title'),
+                'title' => __('Title'),
                 'required' => true
             ]
         );
@@ -116,34 +100,14 @@ class Form extends Generic
         $fieldset->addField(
             'status',
             'select',
-            [   'name' => 'text',
+            [   'name' => 'status',
                 'label' => __('Status'),
                 'title' => __('Status'),
                 'values' => array_merge(['' => ''], $this->statusOption->toOptionArray())
             ]
         );
 
-        $fieldset->addField(
-            'category_ids',
-            'multiselect',
-            [   'name' => 'category_ids',
-                'label' => __('Category'),
-                'title' => __('Category'),
-                'required' => true,
-                /*'values'   => $this->categories->getCategoriesForSelect()*/
-            ]
-        );
 
-        $fieldset->addField(
-            'store_ids',
-            'select',
-            [   'name' => 'store_ids',
-                'label' => __('Store View'),
-                'title' => __('Store View'),
-                'required' => true,
-                'values'   => $this->_systemStore->getStoreValuesForForm(false, true)
-            ]
-        );
 
 
         $form->setValues($model->getData());
