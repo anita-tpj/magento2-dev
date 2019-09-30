@@ -7,10 +7,122 @@
  */
 
 /**  @var \Mastering\Faq\Block\Frontend\Itemlist $block */
+$itemsbycategory = $block->getItemsByCategory();
 ?>
-<?php echo $block->getLabel(); ?>
-<?php foreach($block->getItems() as $item): ?>
-    <p>
-        <?php echo $item['question'];?>: <?php echo $item->getAnswer(); ?>
-    </p>
-<?php endforeach; ?>
+
+<div class="faq" data-bind="scope: 'faq'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <h1 class="page-title" id="top">FAQ's, Return & Shipping Policies</h1>
+    <div class="question-wrap">
+        <h2>Questions</h2>
+        <div class="faq-list-left"></div>
+        <div class="faq-list-right"></div>
+        <?php
+        foreach ($itemsbycategory as $category) : ?>
+            <div class="faq-title-item <?php echo ($category['category_id'] == 5 || $category['category_id'] == 6) ? 'faq-left-item' : 'faq-right-item' ?>">
+                <p><?= $category['name'] ?></p>
+                <ul>
+                   <?php
+                   if(isset($category['items'])) :
+                       foreach ($category['items'] as $item) : ?>
+                            <li><a href="#faq-item-<?= $item['faq_id'] ?>"><?= $item['question'] ?></a></li>
+                        <?php
+                       endforeach;
+                   endif; ?>
+                </ul>
+            </div>
+        <?php
+        endforeach;?>
+
+
+        <div class="faq-form-link">Don't see your question? Click here to ask us!</div>
+    </div>
+    <div class="customer-form-wrap">
+        <h2>Submit your question</h2>
+        <div class="wufoo-form contractor-discounts">
+            <form id="form78" name="faq" class="wufoo" accept-charset="UTF-8" action=""
+                  autocomplete="off" enctype="multipart/form-data" method="post" novalidate>
+                <div class="form-fields">
+                    <div class="input-field input-field-lg">
+                        <input data-validate='{"required":true, "validate-alphanum-with-spaces":true}'
+                               placeholder="Name *" id="name" name="Field3" type="text"/>
+                    </div>
+                </div>
+                <div class="form-fields">
+                    <div class="input-field input-field-lg">
+                        <input data-validate="{required:true, 'validate-email':true}" placeholder="Email *" id="email"
+                               name="Field4" type="email"/>
+                    </div>
+                </div>
+                <div class="form-fields">
+                    <div class="input-field input-field-lg">
+                        <input data-bind="textInput: confirmEmail"
+                               data-validate="{required:true, 'validate-email':true, equalTo:'#email'}"
+                               placeholder="Confirm email *" id="confirmation" name="" type="email"
+                               class="">
+                    </div>
+                </div>
+                <div class="form-fields">
+                    <div class="input-field input-field-lg">
+                        <input data-validate='{"required":false, "validate-phoneStrict":true}' placeholder="Phone Number"
+                               id="phone" name="Field6" type="tel" class="phone_input"/>
+                    </div>
+                </div>
+                <div class="form-fields">
+                    <div class="input-field input-field-text">
+                        <textarea data-validate='{"required":true}' id="question" name="Field7" spellcheck="true" placeholder="Question *"></textarea>
+                    </div>
+                </div>
+                <input type="hidden" id="idstamp" name="idstamp" value="hV2l3F3BTC+USMtplcGjFQ=="/>
+                <input type="hidden" id="hash" name="hash" value="pdtgp0h0c0s4jq"/>
+                <input type="hidden" name="form_id" value="faq"/>
+                <div class="buttons">
+                    <button id="saveForm" class="btTxt submit" type="submit"
+                            data-bind="click: sendWufoo('form78'); return false">Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="answer-wrap">
+        <h2>Answers</h2>
+        <?php foreach ($itemsbycategory as $category) :
+            if(isset($category['items'])) :
+                foreach ($category['items'] as $item) : ?>
+                    <div class="faq-item">
+                        <p class="question" id="faq-item-<?= $item['faq_id'] ?>"><?= $item['question'] ?></p>
+                        <p class="answer"><?= $item['answer'] ?></p>
+                        <div class="back-to-top"><a href="#top">Back to Top</a></div>
+                    </div>
+        <?php
+                endforeach;
+            endif;
+        endforeach; ?>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "faq": {
+                        "component": "Magecomm_Wufoo/js/wufooforms"
+                    }
+                }
+            },
+
+            "Magecomm_Wufoo/js/inputmask": {
+            },
+
+            "Magecomm_Faq/js/faq": {
+            },
+
+            "Magecomm_GlobalPopup/js/create-popup": {
+                "title": "Notice for @comcast.net email addresses",
+                "message": "It has been widely reported that customers with @comcast.net email addresses do not receive our emails. In effort to ensure the best communication possible we ask that you please submit an email address with a different domain (@gmail.com, @yahoo.com etc). We sincerely apologize for this inconvenience and thank you for your understanding!"
+            }
+        }
+    }
+</script>
