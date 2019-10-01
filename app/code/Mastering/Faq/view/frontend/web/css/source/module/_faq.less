@@ -1,0 +1,156 @@
+/**
+ * Author: Mage eComm
+ * Copyright © Mage eComm. All rights reserved.
+ */
+
+@rtaPrimaryColor: red;
+@rtaBorderColorGray: grey;
+@rtaButtonPrimaryHoverColor: blue;
+@rtaLinkColor: blue;
+
+
+//base styles
+& when (@media-common = true) {
+  .faq {
+    h2 {
+      color: @rtaPrimaryColor;
+      font-size: 27px;
+      margin-bottom: 15px;
+    }
+    .question-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+      border-bottom: 1px dotted @rtaBorderColorGray;
+      h2 {
+        flex: 1 1 100%;
+      }
+      .faq-list-left,
+      .faq-list-right {
+        flex: 1 1 45%;
+      }
+      .left-column {
+        margin-right: 15px;
+      }
+      .faq-title-item {
+        p {
+          text-transform: uppercase;
+          font-size: 15px;
+          font-weight: bold;
+          margin-top: 5px;
+          margin-bottom: 0;
+        }
+        ul {
+          margin: 0;
+          padding-left: 20px;
+        }
+        li {
+          margin-bottom: 0;
+        }
+      }
+      .faq-form-link {
+        display: inline-block;
+        padding: 30px 5px 10px;
+        cursor: pointer;
+        color: @rtaLinkColor;
+        font-size: 16px;
+        &:hover {
+          color: @rtaButtonPrimaryHoverColor;
+        }
+      }
+    }
+    .customer-form-wrap {
+      display: none;
+      padding: 0 0 50px;
+      border-bottom: 1px dotted @rtaBorderColorGray;
+      h2 {
+        margin-bottom: 25px;
+      }
+      .contractor-discounts {
+        .form-fields {
+          .input-field {
+            margin-bottom: 8px;
+            input {
+              height: 40px;
+            }
+            div.mage-error {
+              display: none !important
+            }
+          }
+          .input-field.input-field-md {
+            margin-bottom: 4px;
+          }
+        }
+      }
+    }
+    .answer-wrap {
+      .faq-item {
+        border-bottom: 1px dotted @rtaBorderColorGray;
+        margin-bottom: 10px;
+        ul {
+          margin: 0;
+          li {
+            margin: 0;
+          }
+        }
+        .question {
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+        .back-to-top {
+          display: block;
+          text-align: right;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+//mobile specific styles
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .faq {
+    .question-wrap {
+      .faq-list-left,
+      .faq-list-right {
+        flex: 1 1 100%;
+      }
+    }
+  }
+}
+
+//desktop specific styles
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .faq {
+    .question-wrap {
+      .faq-list-left,
+      .faq-list-right {
+        flex: 1 1 45%;
+      }
+    }
+    .customer-form-wrap {
+      @media(min-width: 920px) {
+        .wufoo-form {
+          width: 80%;
+        }
+      }
+      @media(min-width: @screen__l) {
+        .wufoo-form {
+          width: 60%;
+        }
+        .contractor-discounts {
+          .form-fields {
+            .input-field {
+              div.mage-error {
+                display: block !important;
+                right: -206px;
+                width: 178px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
